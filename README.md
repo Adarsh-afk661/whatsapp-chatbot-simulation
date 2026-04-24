@@ -198,17 +198,17 @@ Every request is logged automatically to stdout:
 
 ## 📸 Screenshots
 
-### Local API Test — Hi
-![Hi Response](screenshots/screenshot1.png)
+### Local API Test - Hi
+![Hi Response](Screenshots/Screenshot1.png)
 
 ### Console Logs
-![Console Logs](screenshots/screenshot2.png)
+![Console Logs](Screenshots/Screenshot2.png)
 
-### Live Deployment on Render — Bye
-![Render Bye Response](screenshots/screenshot3.png)
+### Live Deployment on Render - Bye
+![Render Bye Response](Screenshots/Screenshot3.png)
 
-### Live Deployment on Render — Unknown Message
-![Render Unknown Response](screenshots/screenshot4.png)
+### Live Deployment on Render - Unknown Message
+![Render Unknown Response](Screenshots/Screenshot4.png)
 
 ---
 
