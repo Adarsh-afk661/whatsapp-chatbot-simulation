@@ -4,11 +4,10 @@
 <img src="https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white"/>
 <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white"/>
 <img src="https://img.shields.io/badge/REST_API-005571?style=for-the-badge&logo=fastapi&logoColor=white"/>
-<img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge"/>
 
 # 🤖 WhatsApp Chatbot — Backend Simulation
 
-> A clean, production-structured Spring Boot REST API that simulates a WhatsApp chatbot webhook — built to demonstrate layered architecture, request validation, and automated testing.
+> A simple layered Spring Boot REST API that simulates a WhatsApp chatbot webhook — built to demonstrate REST API development, request validation, and service-layer testing.
 
 </div>
 
@@ -85,7 +84,7 @@ Ensure the following are installed on your machine:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/whatsapp-chatbot-simulation.git
+git clone https://github.com/adarshsrivastava11/whatsapp-chatbot-simulation.git
 cd whatsapp-chatbot-simulation
 ```
 
@@ -207,31 +206,12 @@ Planned improvements for future iterations:
 - [ ] **NLP intent matching** — replace exact-match with keyword/intent detection
 - [ ] **Dockerization** — `Dockerfile` + `docker-compose.yml` for one-command setup
 - [ ] **Cloud deployment** — deploy on Render, Railway, or AWS EC2
-- [ ] **Rate limiting** — prevent webhook flooding with Spring Rate Limiter
-
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature/your-feature`
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
 
-**Built with ❤️ by [Adarsh Srivastava](https://github.com/your-username)**
+**Built by [Adarsh Srivastava](https://github.com/adarshsrivastava11)**
 
 *Internship Assignment — REST API Development with Java & Spring Boot*
 
