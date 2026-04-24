@@ -26,8 +26,6 @@ Rather than hardcoding logic in the controller, the project follows a **Controll
 - GitHub Repository: https://github.com/Adarsh-afk661/whatsapp-chatbot-simulation
 - Render Deployment: https://whatsapp-chatbot-simulation-x2kh.onrender.com
 
-> Note: The `/webhook` endpoint accepts only `POST` requests, so opening it directly in the browser may show `404` or `405`, which is expected behavior.
-
 ---
 
 ## 🏗️ Architecture
