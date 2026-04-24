@@ -84,7 +84,7 @@ Ensure the following are installed on your machine:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/adarshsrivastava11/whatsapp-chatbot-simulation.git
+git clone https://github.com/Adarsh-afk661/whatsapp-chatbot-simulation.git
 cd whatsapp-chatbot-simulation
 ```
 
