@@ -211,7 +211,7 @@ Planned improvements for future iterations:
 
 <div align="center">
 
-**Built by [Adarsh Srivastava](https://github.com/adarshsrivastava11)**
+**Built by [Adarsh Srivastava](https://github.com/Adarsh-afk661)**
 
 *Internship Assignment — REST API Development with Java & Spring Boot*
 
