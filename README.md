@@ -84,7 +84,7 @@ Ensure the following are installed on your machine:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/adarshsrivastava11/whatsapp-chatbot-simulation.git
+git clone https://github.com/Adarsh-afk661/whatsapp-chatbot-simulation.git
 cd whatsapp-chatbot-simulation
 ```
 
@@ -196,6 +196,22 @@ Every request is logged automatically to stdout:
 
 ---
 
+## 📸 Screenshots
+
+### Local API Test — Hi
+![Hi Response](screenshots/hi-response.png)
+
+### Local API Test — Bye
+![Bye Response](screenshots/bye-response.png)
+
+### Console Logs
+![Console Logs](screenshots/console-logs.png)
+
+### Live Deployment on Render
+![Render Deployment](screenshots/render-deployment.png)
+
+---
+
 ## 🔭 Roadmap
 
 Planned improvements for future iterations:
@@ -211,7 +227,7 @@ Planned improvements for future iterations:
 
 <div align="center">
 
-**Built by [Adarsh Srivastava](https://github.com/adarshsrivastava11)**
+**Built by [Adarsh Srivastava](https://github.com/Adarsh-afk661)**
 
 *Internship Assignment — REST API Development with Java & Spring Boot*
 
