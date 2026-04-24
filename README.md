@@ -21,12 +21,6 @@ Rather than hardcoding logic in the controller, the project follows a **Controll
 
 ---
 
-## Live Demo
-
-- GitHub Repository: https://github.com/Adarsh-afk661/whatsapp-chatbot-simulation
-- Render Deployment: https://whatsapp-chatbot-simulation-x2kh.onrender.com
-
----
 
 ## 🏗️ Architecture
 
