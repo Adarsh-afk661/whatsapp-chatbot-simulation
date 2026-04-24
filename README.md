@@ -199,16 +199,16 @@ Every request is logged automatically to stdout:
 ## 📸 Screenshots
 
 ### Local API Test — Hi
-![Hi Response](screenshots/hi-response.png)
+![Hi Response](screenshots/screenshot1.png)
 
 ### Local API Test — Bye
-![Bye Response](screenshots/bye-response.png)
+![Bye Response](screenshots/screenshot2.png)
 
 ### Console Logs
-![Console Logs](screenshots/console-logs.png)
+![Console Logs](screenshots/screenshot3.png)
 
 ### Live Deployment on Render
-![Render Deployment](screenshots/render-deployment.png)
+![Render Deployment](screenshots/screenshot4.png)
 
 ---
 
