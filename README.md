@@ -1,55 +1,126 @@
-# WhatsApp Chatbot Backend Simulation
+<div align="center">
 
-This project is a simple WhatsApp chatbot backend simulation built using Java and Spring Boot for the internship assignment.
+<img src="https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"/>
+<img src="https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white"/>
+<img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white"/>
+<img src="https://img.shields.io/badge/REST_API-005571?style=for-the-badge&logo=fastapi&logoColor=white"/>
 
-## Features
+# 🤖 WhatsApp Chatbot — Backend Simulation
 
-- Exposes a `POST /webhook` REST API endpoint
-- Accepts JSON input simulating WhatsApp messages
-- Returns predefined replies:
-  - `Hi` -> `Hello`
-  - `Bye` -> `Goodbye`
-- Returns a default reply for unknown messages
-- Logs all incoming messages in the console
+> A simple layered Spring Boot REST API that simulates a WhatsApp chatbot webhook — built to demonstrate REST API development, request validation, and service-layer testing.
 
-## Tech Stack
+</div>
 
-- Java 17
-- Spring Boot 3
-- Maven
+---
 
-## Project Structure
+## 📖 Overview
 
-```text
-src/main/java/com/example/chatbot
-|-- ChatbotApplication.java
-|-- controller/WebhookController.java
-|-- dto/MessageRequest.java
-|-- dto/MessageResponse.java
-|-- service/ChatbotService.java
+This project simulates the **server-side webhook** of a WhatsApp chatbot. When a user sends a message via WhatsApp Business API, WhatsApp forwards it to your webhook as a `POST` request. This application replicates that flow locally — receiving JSON payloads, processing them through a dedicated service layer, and returning appropriate replies.
+
+Rather than hardcoding logic in the controller, the project follows a **Controller → Service → DTO** separation, making it easy to extend with a database, NLP engine, or real WhatsApp Business API in the future.
+
+---
+
+## 🏗️ Architecture
+
+```
+HTTP Client (Postman / WhatsApp)
+        │
+        ▼
+┌──────────────────────┐
+│  WebhookController   │  ← Receives POST /webhook, delegates to service
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│   ChatbotService     │  ← Business logic: message matching, logging
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│  MessageRequest /    │  ← DTOs for clean request-response contracts
+│  MessageResponse     │
+└──────────────────────┘
 ```
 
-## How to Run Locally
+---
 
-1. Make sure Java 17 and Maven are installed.
-2. Open the project in terminal.
-3. Run:
+## 🗂️ Project Structure
+
+```
+src/
+├── main/
+│   ├── java/com/example/chatbot/
+│   │   ├── ChatbotApplication.java          # Spring Boot entry point
+│   │   ├── controller/
+│   │   │   └── WebhookController.java       # POST /webhook endpoint
+│   │   ├── dto/
+│   │   │   ├── MessageRequest.java          # Incoming message model
+│   │   │   └── MessageResponse.java         # Outgoing reply model
+│   │   └── service/
+│   │       └── ChatbotService.java          # Reply logic + console logging
+│   └── resources/
+│       └── application.properties
+└── test/
+    └── java/com/example/chatbot/service/
+        └── ChatbotServiceTest.java          # Unit tests for service layer
+```
+
+---
+
+## ⚙️ Prerequisites
+
+Ensure the following are installed on your machine:
+
+| Requirement | Version | Check Command |
+|-------------|---------|---------------|
+| JDK | 17+ | `java -version` |
+| Maven | 3.8+ | `mvn -version` |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/adarshsrivastava11/whatsapp-chatbot-simulation.git
+cd whatsapp-chatbot-simulation
+```
+
+### 2. Build the project
+
+```bash
+mvn clean install
+```
+
+### 3. Run the application
 
 ```bash
 mvn spring-boot:run
 ```
 
-4. The application will start on:
+The server starts at: **`http://localhost:8080`**
 
-```text
-http://localhost:8080
-```
+> **Port conflict?** Run on a different port:
+> ```bash
+> mvn spring-boot:run "-Dspring-boot.run.arguments=--server.port=8081"
+> ```
 
-## API Endpoint
+---
+
+## 📡 API Reference
 
 ### `POST /webhook`
 
-Request body:
+Accepts an incoming message and returns a chatbot reply.
+
+**Request**
+
+```http
+POST /webhook
+Content-Type: application/json
+```
 
 ```json
 {
@@ -57,7 +128,7 @@ Request body:
 }
 ```
 
-Response:
+**Response**
 
 ```json
 {
@@ -65,75 +136,83 @@ Response:
 }
 ```
 
-## Sample Test Cases
+### Response Behavior
 
-### Case 1
+| Input Message | Response | Notes |
+|---------------|----------|-------|
+| `Hi` | `Hello` | Case-insensitive |
+| `Bye` | `Goodbye` | Case-insensitive |
+| *(blank / empty)* | `400 Bad Request` | Validation enforced |
+| *(anything else)* | `I don't understand` | Default fallback |
 
-Request:
+> **Note:** Input is trimmed and matched case-insensitively — `" HI "`, `"hi"`, and `"Hi"` all return `Hello`.
 
-```json
-{
-  "message": "Hi"
-}
+---
+
+## 🧪 Testing
+
+### Run unit tests
+
+```bash
+mvn test
 ```
 
-Response:
+The `ChatbotServiceTest` covers:
+- Correct reply for `Hi`
+- Correct reply for `Bye`
+- Default reply for unrecognized input
+- Case-insensitivity behavior
 
-```json
-{
-  "reply": "Hello"
-}
+### Manual testing with cURL
+
+```bash
+# Test Hi
+curl -X POST http://localhost:8080/webhook \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Hi"}'
+
+# Test Bye
+curl -X POST http://localhost:8080/webhook \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Bye"}'
+
+# Test unknown input
+curl -X POST http://localhost:8080/webhook \
+  -H "Content-Type: application/json" \
+  -d '{"message": "What is the weather?"}'
 ```
 
-### Case 2
+---
 
-Request:
+## 📋 Console Logging
 
-```json
-{
-  "message": "Bye"
-}
+Every request is logged automatically to stdout:
+
+```
+2024-01-15 10:23:01 INFO  ChatbotService - Incoming message received: Hi
+2024-01-15 10:23:45 INFO  ChatbotService - Incoming message received: Bye
+2024-01-15 10:24:10 INFO  ChatbotService - Incoming message received: What is the weather?
 ```
 
-Response:
+---
 
-```json
-{
-  "reply": "Goodbye"
-}
-```
+## 🔭 Roadmap
 
-### Case 3
+Planned improvements for future iterations:
 
-Request:
+- [ ] **WhatsApp Business API integration** — connect to real Meta webhook
+- [ ] **Persistent chat history** — store conversations in PostgreSQL / MySQL
+- [ ] **Dynamic reply rules** — load responses from DB or YAML config instead of hardcoding
+- [ ] **NLP intent matching** — replace exact-match with keyword/intent detection
+- [ ] **Dockerization** — `Dockerfile` + `docker-compose.yml` for one-command setup
+- [ ] **Cloud deployment** — deploy on Render, Railway, or AWS EC2
 
-```json
-{
-  "message": "How are you?"
-}
-```
+---
 
-Response:
+<div align="center">
 
-```json
-{
-  "reply": "I don't understand"
-}
-```
+**Built by [Adarsh Srivastava](https://github.com/adarshsrivastava11)**
 
-## Postman Testing
+*Internship Assignment — REST API Development with Java & Spring Boot*
 
-- Method: `POST`
-- URL: `http://localhost:8080/webhook`
-- Header: `Content-Type: application/json`
-- Body: raw JSON
-
-## Logging
-
-Every incoming message is logged in the application console using Spring Boot logging.
-
-Example log:
-
-```text
-Incoming message received: Hi
-```
+</div>
