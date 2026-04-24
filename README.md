@@ -1,105 +1,230 @@
-# 📱 WhatsApp Chatbot Backend Simulation
+# 💬 WhatsApp Chatbot Backend Simulation
 
-<div align="center">
-
-![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=java)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-green?style=for-the-badge&logo=spring-boot)
-![Maven](https://img.shields.io/badge/Maven-Build-red?style=for-the-badge&logo=apachemaven)
-![REST API](https://img.shields.io/badge/API-REST-blue?style=for-the-badge)
-
-**A simple backend simulation of a WhatsApp chatbot using Java & Spring Boot**
-
-</div>
+A lightweight backend simulation of a WhatsApp chatbot built with **Java 17** and **Spring Boot 3**. Created as part of an internship assignment to demonstrate REST API development, JSON request handling, predefined chatbot responses, and message logging.
 
 ---
 
-## 📋 Table of Contents
+## 📌 Project Objective
 
-- [🚀 Project Objective](#-project-objective)
-- [✨ Features](#-features)
-- [🛠️ Tech Stack](#️-tech-stack)
-- [📂 Project Structure](#-project-structure)
-- [🔌 API Details](#-api-details)
-- [🧪 Testing](#-testing)
-- [⚙️ Running the Project](#️-running-the-project)
-- [📮 Postman Testing](#-postman-testing)
-- [📝 Logging](#-logging)
-- [⚠️ Validation Notes](#️-validation--behavior-notes)
-- [📦 Submission](#-submission-artifacts)
-- [🔮 Future Improvements](#-future-improvements)
-- [👨‍💻 Author](#-author)
+The application simulates a WhatsApp chatbot backend by exposing a webhook endpoint that accepts incoming messages in JSON format and returns predefined responses.
 
----
+| Incoming Message | Reply |
+|-----------------|-------|
+| `Hi` | `Hello` |
+| `Bye` | `Goodbye` |
+| Any other message | `I don't understand` |
 
-## 🚀 Project Objective
-
-This project simulates a **WhatsApp chatbot backend** by exposing a webhook endpoint that:
-
-- Accepts incoming messages in JSON format  
-- Returns predefined chatbot responses  
-- Logs all incoming messages  
-
----
-
-## ✨ Features
-
-- 📌 `POST /webhook` REST endpoint  
-- 📥 Accepts JSON requests  
-- 🤖 Returns predefined chatbot responses  
-- ❓ Handles unknown messages  
-- 📝 Logs incoming messages  
-- 🧪 Includes basic testing  
+> All incoming messages are logged in the console.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Java 17**
-- **Spring Boot 3**
-- **Maven**
-- **REST API**
+| Technology | Version |
+|------------|---------|
+| Java | 17 |
+| Spring Boot | 3.x |
+| Build Tool | Maven |
+| API Type | REST |
 
 ---
 
-## 📂 Project Structure
+## ✨ Features
 
-```text
+- `POST /webhook` REST endpoint
+- Accepts JSON requests simulating WhatsApp messages
+- Returns chatbot-style predefined replies
+- Handles unknown messages with a default response
+- Logs every incoming message to the console
+- Includes a basic service-layer unit test
+- Case-insensitive message matching
+- Trims leading/trailing whitespace before processing
+- Rejects blank messages via request validation
+
+---
+
+## 📁 Project Structure
+
+```
 src
-|-- main
-|   |-- java
-|   |   `-- com/example/chatbot
-|   |       |-- ChatbotApplication.java
-|   |       |-- controller/WebhookController.java
-|   |       |-- dto/MessageRequest.java
-|   |       |-- dto/MessageResponse.java
-|   |       `-- service/ChatbotService.java
-|   `-- resources
-|       `-- application.properties
-`-- test
-    `-- java/com/example/chatbot/service/ChatbotServiceTest.java
-
----
+├── main
+│   ├── java
+│   │   └── com/example/chatbot
+│   │       ├── ChatbotApplication.java
+│   │       ├── controller/
+│   │       │   └── WebhookController.java
+│   │       ├── dto/
+│   │       │   ├── MessageRequest.java
+│   │       │   └── MessageResponse.java
+│   │       └── service/
+│   │           └── ChatbotService.java
+│   └── resources
+│       └── application.properties
+└── test
+    └── java/com/example/chatbot/service/
+        └── ChatbotServiceTest.java
+```
 
 ---
 
 ## 🔌 API Details
 
-### 📍 Endpoint
+### Endpoint
 
-- **Method:** POST  
-- **URL:** `/webhook`
+| Property | Value |
+|----------|-------|
+| Method | `POST` |
+| URL | `/webhook` |
+| Content-Type | `application/json` |
 
----
-
-### 📥 Request Body
+### Request Body
 
 ```json
 {
   "message": "Hi"
-}": "Hi"
 }
-### Response 
+```
 
+### Success Response
+
+```json
 {
   "reply": "Hello"
 }
+```
+
+---
+
+## 🚀 How to Run the Project Locally
+
+### Prerequisites
+
+- Java 17 installed
+- Maven installed
+
+### Run on Default Port (8080)
+
+```bash
+mvn spring-boot:run
+```
+
+Access at: `http://localhost:8080`
+
+### Run on a Custom Port (e.g., 8081)
+
+```bash
+mvn spring-boot:run "-Dspring-boot.run.arguments=--server.port=8081"
+```
+
+Access at: `http://localhost:8081`
+
+---
+
+## 🧪 How to Test Using Postman
+
+**Request Configuration:**
+- Method: `POST`
+- URL: `http://localhost:8080/webhook`
+- Header: `Content-Type: application/json`
+- Body: `raw` → `JSON`
+
+### Test Case 1 — `Hi`
+
+**Request:**
+```json
+{ "message": "Hi" }
+```
+**Response:**
+```json
+{ "reply": "Hello" }
+```
+
+### Test Case 2 — `Bye`
+
+**Request:**
+```json
+{ "message": "Bye" }
+```
+**Response:**
+```json
+{ "reply": "Goodbye" }
+```
+
+### Test Case 3 — Unknown Message
+
+**Request:**
+```json
+{ "message": "How are you?" }
+```
+**Response:**
+```json
+{ "reply": "I don't understand" }
+```
+
+---
+
+## 📋 Logging
+
+Every incoming message is automatically logged to the application console.
+
+**Example output:**
+```
+Incoming message received: Hi
+Incoming message received: Bye
+Incoming message received: How are you?
+```
+
+---
+
+## ✅ Validation & Behavior Notes
+
+- **Blank messages** are rejected by request validation
+- **Message matching** is case-insensitive (`hi`, `HI`, `Hi` all return `Hello`)
+- **Whitespace** is trimmed before reply generation
+
+---
+
+## 🧾 Running Tests
+
+```bash
+mvn test
+```
+
+---
+
+## 📦 Submission Artifacts
+
+This repository is submitted with:
+
+- [x] Source code
+- [x] GitHub repository link
+- [x] Screenshots of local execution
+- [x] Demo video of the working API
+
+### Suggested Screenshots
+
+1. Spring Boot application running in terminal
+2. Postman — `Hi` request and response
+3. Postman — `Bye` request and response
+4. Postman — unknown message request and response
+5. Terminal logs showing incoming messages
+
+---
+
+## 🔮 Future Improvement Ideas
+
+- Real WhatsApp Business API integration
+- Database storage for chat history
+- More dynamic and configurable reply rules
+- Docker support for containerized deployment
+- Cloud deployment on Render or another free platform
+
+---
+
+## 👨‍💻 Author
+
+**Adarsh Srivastava**
+
+---
+
+> *Built as an internship assignment to demonstrate REST API development with Java & Spring Boot.*
