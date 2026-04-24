@@ -137,20 +137,3 @@ Example log:
 ```text
 Incoming message received: Hi
 ```
-
-## Screenshots to Include in Submission
-
-- Spring Boot application running in terminal
-- Postman request and response for `Hi`
-- Console log showing incoming message
-
-## Bonus Deployment
-
-You can deploy this project on Render or any free hosting platform by connecting the GitHub repository and using Maven build/start commands.
-
-## Submission Checklist
-
-- Source code uploaded to GitHub
-- `README.md` added
-- Screenshots captured
-- 2-3 minute demo video recorded
