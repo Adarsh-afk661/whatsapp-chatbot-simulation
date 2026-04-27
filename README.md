@@ -59,7 +59,7 @@ src/
 │   │   │   ├── MessageRequest.java          # Incoming message model
 │   │   │   └── MessageResponse.java         # Outgoing reply model
 │   │   └── service/
-│   │       └── ChatbotService.java          # Reply logic + console logging
+│   │       └── ChatbotService.java          # Reply logic + console logging.
 │   └── resources/
 │       └── application.properties
 └── test/
