@@ -39,7 +39,7 @@ HTTP Client (Postman / WhatsApp)
            │
            ▼
 ┌──────────────────────┐
-│  MessageRequest /    │  ← DTOs for clean request-response contracts.
+│  MessageRequest /    │  ← DTOs for clean request-response contracts
 │  MessageResponse     │
 └──────────────────────┘
 ```
