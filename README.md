@@ -46,7 +46,7 @@ HTTP Client (Postman / WhatsApp)
 
 ---
 
-## 🗂️ Project Structure
+## 🗂️ Project Structure.
 
 ```
 src/
